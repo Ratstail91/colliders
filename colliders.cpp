@@ -8,14 +8,7 @@ static_assert(std::is_pod<ColliderCircle>::value, "ColliderCircle is not a POD")
 static_assert(std::is_pod<ColliderBox>::value, "ColliderBox is not a POD");
 static_assert(std::is_pod<ColliderPoint>::value, "ColliderPoint is not a POD");
 
-//flip the orders
-bool Intersect(ColliderCircle const& lhs, ColliderLine const& rhs) { return Intersect(rhs, lhs); }
-bool Intersect(ColliderBox const& lhs, ColliderLine const& rhs) { return Intersect(rhs, lhs); }
-bool Intersect(ColliderBox const& lhs, ColliderCircle const& rhs) { return Intersect(rhs, lhs); }
-bool Intersect(ColliderCircle const& lhs, ColliderPoint const& rhs) { return Intersect(rhs, lhs); }
-bool Intersect(ColliderBox const& lhs, ColliderPoint const& rhs) { return Intersect(rhs, lhs); }
-
-//proper implementations
+//lines
 bool Intersect(ColliderLine const& lhs, ColliderLine const& rhs) {
 	//this algorithm was copied from the net, so I'm not messing with it
 	const double x1 = lhs.center.x;
@@ -38,16 +31,39 @@ bool Intersect(ColliderLine const& lhs, ColliderLine const& rhs) {
 bool Intersect(ColliderLine const& lhs, ColliderCircle const& rhs) {
 	return false; //TODO
 }
+
 bool Intersect(ColliderLine const& lhs, ColliderBox const& rhs) {
 	return false; //TODO
 }
 
-bool Intersect(ColliderCircle const& lhs, ColliderCircle const& rhs) {
+bool Intersect(ColliderLine const& lhs, ColliderPoint const& rhs) {
 	return false; //TODO
+}
+
+//circles
+bool Intersect(ColliderCircle const& lhs, ColliderLine const& rhs) {
+	return Intersect(rhs, lhs);
+}
+
+bool Intersect(ColliderCircle const& lhs, ColliderCircle const& rhs) {
+	return (rhs.center - lhs.center).SquaredLength() > lhs.radius + rhs.radius;
 }
 
 bool Intersect(ColliderCircle const& lhs, ColliderBox const& rhs) {
 	return false; //TODO
+}
+
+bool Intersect(ColliderCircle const& lhs, ColliderPoint const& rhs) {
+	return false; //TODO
+}
+
+//boxes
+bool Intersect(ColliderBox const& lhs, ColliderLine const& rhs) {
+	return Intersect(rhs, lhs);
+}
+
+bool Intersect(ColliderBox const& lhs, ColliderCircle const& rhs) {
+	return Intersect(rhs, lhs);
 }
 
 bool Intersect(ColliderBox const& lhs, ColliderBox const& rhs) {
@@ -72,11 +88,23 @@ bool Intersect(ColliderBox const& lhs, ColliderBox const& rhs) {
 	return true;
 }
 
-bool Intersect(ColliderPoint const& lhs, ColliderCircle const& rhs) {
+bool Intersect(ColliderBox const& lhs, ColliderPoint const& rhs) {
 	return false; //TODO
+}
+
+//points
+bool Intersect(ColliderPoint const& lhs, ColliderLine const& rhs) {
+	return Intersect(rhs, lhs);
+}
+
+bool Intersect(ColliderPoint const& lhs, ColliderCircle const& rhs) {
+	return Intersect(rhs, lhs);
 }
 
 bool Intersect(ColliderPoint const& lhs, ColliderBox const& rhs) {
-	return false; //TODO
+	return Intersect(rhs, lhs);
 }
 
+bool Intersect(ColliderPoint const& lhs, ColliderPoint const& rhs) {
+	return lhs.center == rhs.center;
+}

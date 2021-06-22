@@ -29,17 +29,20 @@ public:
 bool Intersect(ColliderLine const& lhs, ColliderLine const& rhs);
 bool Intersect(ColliderLine const& lhs, ColliderCircle const& rhs);
 bool Intersect(ColliderLine const& lhs, ColliderBox const& rhs);
+bool Intersect(ColliderLine const& lhs, ColliderPoint const& rhs);
 
 bool Intersect(ColliderCircle const& lhs, ColliderLine const& rhs);
 bool Intersect(ColliderCircle const& lhs, ColliderCircle const& rhs);
 bool Intersect(ColliderCircle const& lhs, ColliderBox const& rhs);
+bool Intersect(ColliderCircle const& lhs, ColliderPoint const& rhs);
 
 bool Intersect(ColliderBox const& lhs, ColliderLine const& rhs);
 bool Intersect(ColliderBox const& lhs, ColliderCircle const& rhs);
 bool Intersect(ColliderBox const& lhs, ColliderBox const& rhs);
+bool Intersect(ColliderBox const& lhs, ColliderPoint const& rhs);
 
+bool Intersect(ColliderPoint const& lhs, ColliderLine const& rhs);
 bool Intersect(ColliderPoint const& lhs, ColliderCircle const& rhs);
 bool Intersect(ColliderPoint const& lhs, ColliderBox const& rhs);
-bool Intersect(ColliderCircle const& lhs, ColliderPoint const& rhs);
-bool Intersect(ColliderBox const& lhs, ColliderPoint const& rhs);
+bool Intersect(ColliderPoint const& lhs, ColliderPoint const& rhs);
 
