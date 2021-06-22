@@ -17,7 +17,7 @@ static TestResult expectOverlaps() {
 		}
 	}
 
-	//line-line with a point in common
+	//line-line corner case
 	{
 		ColliderLine a {{0, 0}, {0, 1}};
 		ColliderLine b {{0, 0}, {1, 0}};
@@ -90,7 +90,7 @@ static TestResult expectNoOverlaps() {
 		ColliderLine line {{-10, -10}, {10, 10}};
 		ColliderBox box {{20, 0}, {2.5, 2.5}};
 
-		if (Intersect(line, box)) {
+		if (!Intersect(line, box)) {
 			results.observed++;
 		}
 	}
@@ -98,9 +98,9 @@ static TestResult expectNoOverlaps() {
 	//line-point
 	{
 		ColliderLine line {{-10, -10}, {10, 10}};
-		ColliderPoint point {{1, 0}};
+		ColliderPoint point {{0, 1}};
 
-		if (Intersect(line, point)) {
+		if (!Intersect(line, point)) {
 			results.observed++;
 		}
 	}

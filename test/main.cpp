@@ -24,7 +24,11 @@ int main() {
 
 	//run each test in sequence, recording the result
 	for (auto t : testVector) {
-		results += t();
+		TestResult res = t();
+
+//		std::cout << res.observed << "/" << res.expected << std::endl;
+
+		results += res;
 	}
 
 	//finally

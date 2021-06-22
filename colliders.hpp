@@ -25,6 +25,17 @@ public:
 	Vector2 center;
 };
 
+//vector shifts and assignments
+ColliderLine operator+(ColliderLine const& lhs, Vector2 const& rhs);
+ColliderCircle operator+(ColliderCircle const& lhs, Vector2 const& rhs);
+ColliderBox operator+(ColliderBox const& lhs, Vector2 const& rhs);
+ColliderPoint operator+(ColliderPoint const& lhs, Vector2 const& rhs);
+
+ColliderLine& operator+=(ColliderLine& lhs, Vector2 const& rhs);
+ColliderCircle& operator+=(ColliderCircle& lhs, Vector2 const& rhs);
+ColliderBox& operator+=(ColliderBox& lhs, Vector2 const& rhs);
+ColliderPoint& operator+=(ColliderPoint& lhs, Vector2 const& rhs);
+
 //intersection functions
 bool Intersect(ColliderLine const& lhs, ColliderLine const& rhs);
 bool Intersect(ColliderLine const& lhs, ColliderCircle const& rhs);

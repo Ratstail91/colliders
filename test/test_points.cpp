@@ -78,7 +78,7 @@ static TestResult expectNoOverlaps() {
 	//point-line
 	{
 		ColliderPoint point {{0, 0}};
-		ColliderLine line {{0, -5}, {0, 6}};
+		ColliderLine line {{0, -5}, {1, 5}};
 
 		if (!Intersect(point, line)) {
 			results.observed++;
@@ -110,7 +110,7 @@ static TestResult expectNoOverlaps() {
 		ColliderPoint a {{0, 0}};
 		ColliderPoint b {{0, 1}};
 
-		if (!Intersect(a, a)) {
+		if (!Intersect(a, b)) {
 			results.observed++;
 		}
 	}

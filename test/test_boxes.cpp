@@ -69,7 +69,7 @@ static TestResult expectOverlaps() {
 
 	//box-point corner case
 	{
-		ColliderBox box {{0, 0}, {5, 5}};
+		ColliderBox box {{5, 5}, {5, 5}};
 		ColliderPoint point {{10, 10}};
 
 		if (Intersect(box, point)) {
